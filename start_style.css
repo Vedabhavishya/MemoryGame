@@ -1,0 +1,56 @@
+#start-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Ensure the height covers the full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('Images/start_background.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center center; /* Center the image both horizontally and vertically */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; /* Make background fixed while scrolling */
+    z-index: 10; /* Ensure it overlays the game */
+}
+
+#game-title {
+    font-size: 48px; /* Larger title */
+    font-weight: bold;
+    color: rgb(248, 148, 165);
+    margin-bottom: 50px; /* Space below title */
+    text-align: center;
+}
+
+.start-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 250px; /* Set max width for the start container */
+    width: 90%;
+}
+
+.start-container h1 {
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+}
+
+#start-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #7556da;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start-button:hover {
+    background-color: #7556da;
+}

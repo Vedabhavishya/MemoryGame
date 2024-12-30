@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Congratulations</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f57cd5;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .congrats-container {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1; /* Ensure the container is above the papers */
+    }
+
+    h1 {
+      color: #4CAF50;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #blast-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none; /* Allow clicks through the paper blast */
+    }
+
+    .paper {
+      width: 4px;
+      height: 10px;
+      background: #ff5733;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      animation: fly 2s ease-out forwards;
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="blast-container"></div>
+
+  <div class="congrats-container">
+    <h1>Congratulations!</h1>
+    <p>You have successfully completed the Memory Game!</p>
+    <button onclick="window.location.href='index.html'">Play Again</button>
+  </div>
+
+  <script>
+    // Function to create "papers" and animate them
+    function createPapersBlast() {
+      const container = document.getElementById('blast-container');
+
+      for (let i = 0; i < 500; i++) { // Increase the number of papers
+        const paper = document.createElement('div');
+        paper.classList.add('paper');
+
+        // Randomize position and direction for each paper
+        paper.style.setProperty('--x', `${Math.random() * window.innerWidth - window.innerWidth / 2}px`);
+        paper.style.setProperty('--y', `${Math.random() * window.innerHeight - window.innerHeight / 2}px`);
+
+        // Randomize paper colors for a more dynamic effect
+        paper.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+
+        // Append paper to the container
+        container.appendChild(paper);
+      }
+    }
+
+    // Trigger the papers blast immediately on page load
+    window.onload = () => {
+      createPapersBlast();
+    };
+  </script>
+</body>
+</html>
