@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Congratulations</title>
   <style>
     body {
@@ -21,7 +22,7 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      z-index: 1; /* Ensure the container is above the papers */
+      z-index: 1; /* Ensure the container is above the falling papers */
     }
 
     h1 {
@@ -42,71 +43,94 @@
       background-color: #45a049;
     }
 
-    #blast-container {
+    /* Falling papers styles */
+    #falling-container {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
-      pointer-events: none; /* Allow clicks through the paper blast */
+      pointer-events: none;
     }
 
     .paper {
-      width: 4px;
-      height: 10px;
+      width: 6px;
+      height: 12px;
       background: #ff5733;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      animation: fly 2s ease-out forwards;
+      top: -20px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+      border-radius: 2px;
     }
 
-    @keyframes fly {
-      0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 1;
+    /* Falling animation */
+    @keyframes fall {
+      from {
+        transform: translateY(-20px) rotate(0deg);
       }
-      100% {
-        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.2);
-        opacity: 0;
+      to {
+        transform: translateY(100vh) rotate(360deg);
       }
     }
   </style>
 </head>
 <body>
-  <div id="blast-container"></div>
+  <div id="falling-container"></div>
 
   <div class="congrats-container">
     <h1>Congratulations!</h1>
     <p>You have successfully completed the Memory Game!</p>
-    <button onclick="window.location.href='gallery.html'">Play Again</button>
+    <button id="play-again" onclick="playAgain()">Play Again</button>
   </div>
 
   <script>
-    // Function to create "papers" and animate them
-    function createPapersBlast() {
-      const container = document.getElementById('blast-container');
+    let isRunning = true;
 
-      for (let i = 0; i < 500; i++) { // Increase the number of papers
+    function createFallingPapers() {
+      const container = document.getElementById('falling-container');
+
+      function createPaper() {
+        if (!isRunning) return;
+
         const paper = document.createElement('div');
         paper.classList.add('paper');
 
-        // Randomize position and direction for each paper
-        paper.style.setProperty('--x', `${Math.random() * window.innerWidth - window.innerWidth / 2}px`);
-        paper.style.setProperty('--y', `${Math.random() * window.innerHeight - window.innerHeight / 2}px`);
+        // Randomize horizontal position
+        paper.style.left = `${Math.random() * 100}vw`;
 
-        // Randomize paper colors for a more dynamic effect
+        // Randomize animation duration and delay
+        const duration = Math.random() * 2 + 3; // 3 to 5 seconds
+        const delay = Math.random() * 2; // 0 to 2 seconds
+        paper.style.animationDuration = `${duration}s`;
+        paper.style.animationDelay = `${delay}s`;
+
+        // Randomize paper colors
         paper.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
 
-        // Append paper to the container
         container.appendChild(paper);
+
+        // Remove the paper after animation ends
+        paper.addEventListener('animationend', () => {
+          paper.remove();
+        });
+
+        // Schedule the next paper
+        setTimeout(createPaper, 100); // Adjust for density of papers
       }
+
+      createPaper();
     }
 
-    // Trigger the papers blast immediately on page load
+    function playAgain() {
+      isRunning = false; // Stop creating papers
+      window.location.href = 'gallery.html'; // Navigate to gallery.html
+    }
+
+    // Start creating papers when the page loads
     window.onload = () => {
-      createPapersBlast();
+      createFallingPapers();
     };
   </script>
 </body>

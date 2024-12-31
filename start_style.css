@@ -1,64 +1,88 @@
-#start-page {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Reset and Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Start Page Styles */
+  #start-page {
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: url('Images/start_background.jpg'); /* Replace with your image path */
-    background-size: cover; /* Ensures the image covers the entire screen */
-    background-position: center; /* Centers the background image */
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    z-index: 10; /* Ensure it overlays the game */
   }
   
-  /* Add media query for better responsiveness */
-  @media (max-width: 768px) {
-    #start-page {
-      background-size: contain; /* Adjusts for smaller screens */
-      background-attachment: fixed; /* Keeps the background stable */
-    }
-  }
-  
-
-#game-title {
-    font-size: 48px; /* Larger title */
-    font-weight: bold;
-    color: rgb(248, 148, 165);
-    margin-bottom: 50px; /* Space below title */
-    text-align: center;
-}
-
-.start-container {
+  .start-container {
     text-align: center;
     background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    max-width: 250px; /* Set max width for the start container */
+    max-width: 350px;
     width: 90%;
-}
-
-.start-container h1 {
-    margin-bottom: 20px;
-    font-size: 36px;
+  }
+  
+  #game-title {
+    font-size: 2.5rem; /* Adjusts based on screen size */
     font-weight: bold;
     color: #333;
-}
-
-#start-button {
-    padding: 10px 20px;
-    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  #start-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
     background-color: #7556da;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-#start-button:hover {
-    background-color: #7556da;
-}
+    transition: background-color 0.3s;
+  }
+  
+  #start-button:hover {
+    background-color: #5a3bbf;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    #game-title {
+      font-size: 2rem;
+    }
+  
+    #start-button {
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+  
+    .start-container {
+      padding: 15px;
+      max-width: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #game-title {
+      font-size: 1.8rem;
+    }
+  
+    #start-button {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+    }
+  
+    .start-container {
+      padding: 10px;
+    }
+  }
+  
