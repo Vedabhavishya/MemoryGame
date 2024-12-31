@@ -3,18 +3,26 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh; /* Ensure the height covers the full viewport height */
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: url('Images/start_background.jpg'); /* Replace with your image path */
-    background-size: cover;
-    background-position: center center; /* Center the image both horizontally and vertically */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-attachment: fixed; /* Make background fixed while scrolling */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat;
     z-index: 10; /* Ensure it overlays the game */
-}
+  }
+  
+  /* Add media query for better responsiveness */
+  @media (max-width: 768px) {
+    #start-page {
+      background-size: contain; /* Adjusts for smaller screens */
+      background-attachment: fixed; /* Keeps the background stable */
+    }
+  }
+  
 
 #game-title {
     font-size: 48px; /* Larger title */
