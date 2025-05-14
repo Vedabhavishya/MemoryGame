@@ -1,0 +1,88 @@
+/* Reset and Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Start Page Styles */
+  #start-page {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('Images/start_background.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .start-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    width: 90%;
+  }
+  
+  #game-title {
+    font-size: 2.5rem; /* Adjusts based on screen size */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  #start-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #7556da;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #start-button:hover {
+    background-color: #5a3bbf;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    #game-title {
+      font-size: 2rem;
+    }
+  
+    #start-button {
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+  
+    .start-container {
+      padding: 15px;
+      max-width: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #game-title {
+      font-size: 1.8rem;
+    }
+  
+    #start-button {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+    }
+  
+    .start-container {
+      padding: 10px;
+    }
+  }
+  
